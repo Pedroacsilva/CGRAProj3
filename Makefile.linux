@@ -1,0 +1,22 @@
+all:  lines triangles
+
+
+
+lines: lines.o deecshader.o deecshader.h
+	g++ -g lines.o deecshader.o  -lSDL2  -lGLEW -lGL  -lX11 -o lines
+
+lines.o: lines.cpp deecshader.h
+	g++ -c -g lines.cpp -I/usr/include/SDL2
+
+deecshader.o: deecshader.cpp deecshader.h
+	g++ -c -g deecshader.cpp 
+
+
+triangles: triangles.o deecshader.o
+	   g++ -g triangles.o deecshader.o -o triangles   -lglut  -lGLEW -lGL -lX11
+
+triangles.o: triangles.cpp deecshader.h
+	     g++ -c -g triangles.cpp
+	     
+clean:
+	rm -f lines triangles *.o *~
